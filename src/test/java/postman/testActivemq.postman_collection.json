@@ -51,6 +51,45 @@
 			"response": []
 		},
 		{
+			"name": "队列测试-网关入口",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "aaa",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip-gateway}}:{{port-gateway}}/activemq/queue/test",
+					"protocol": "http",
+					"host": [
+						"{{ip-gateway}}"
+					],
+					"port": "{{port-gateway}}",
+					"path": [
+						"activemq",
+						"queue",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "主题测试",
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {}
