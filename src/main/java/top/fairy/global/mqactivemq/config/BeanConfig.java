@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.config.JmsListenerContainerFactory;
 import org.springframework.jms.config.SimpleJmsListenerContainerFactory;
 import org.springframework.jms.core.JmsMessagingTemplate;
+import org.springframework.jms.core.JmsTemplate;
 
 import javax.jms.*;
 
@@ -50,6 +51,12 @@ public class BeanConfig {
         return new JmsMessagingTemplate(connectionFactory());
     }
 
+//    @Bean("jmsMessageTemplateConsistence")
+//    public JmsMessagingTemplate jmsMessageTemplateConsistence() {
+//        return new JmsMessagingTemplate(connectionFactory());
+//    }
+
+
     // 在Queue模式中，对消息的监听需要对containerFactory进行配置
     @Bean("queueListener")
     public JmsListenerContainerFactory<?> queueJmsListenerContainerFactory(ConnectionFactory connectionFactory) {
@@ -68,28 +75,13 @@ public class BeanConfig {
         return factory;
     }
 
-    //在Topic模式中，对消息的监听需要对containerFactory进行配置
-    @Bean("topicPercistenceListener")
-    public JmsListenerContainerFactory<?> topicPercistenceJmsListenerContainerFactory(ConnectionFactory connectionFactory) {
-        SimpleJmsListenerContainerFactory factory = new SimpleJmsListenerContainerFactory();
-
-//        // 创建connection
-//        Connection connection = null;
-//        try {
-//            connection = connectionFactory.createConnection();
-//            connection.setClientID("bbb"); //持久订阅需要设置这个。
-//            connection.start();
-//            // 创建session
-//            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-//            // 创建destination
-//            Topic topic = session.createTopic("userSyncTopic"); //Topic名称
-//            MessageConsumer consumer = session.createDurableSubscriber(topic, "bbb"); //持久订阅
-//        } catch (JMSException e) {
-//            e.printStackTrace();
-//        }
+//    //在Topic模式中，对消息的监听需要对containerFactory进行配置
+//    @Bean("topicPercistenceListener")
+//    public JmsListenerContainerFactory<?> topicPercistenceJmsListenerContainerFactory(ConnectionFactory connectionFactory) {
+//        SimpleJmsListenerContainerFactory factory = new SimpleJmsListenerContainerFactory();
 //
-        factory.setConnectionFactory(connectionFactory);
-        factory.setPubSubDomain(true);
-        return factory;
-    }
+//        factory.setConnectionFactory(connectionFactory);
+//        factory.setPubSubDomain(true);
+//        return factory;
+//    }
 }

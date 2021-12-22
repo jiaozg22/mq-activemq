@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class TopicConsumerListener
 {
     //topic模式的消费者，普通订阅模式
-    @JmsListener(destination="${spring.activemq.topic-name}", containerFactory="topicListener")
+    @JmsListener(destination="${spring.activemq.topic-name}", containerFactory="topicListener" )
     public void readActiveQueue(String message) {
         System.out.println("topic接受到：" + message);
     }
