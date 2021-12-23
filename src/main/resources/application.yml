@@ -2,23 +2,38 @@ server:
   port: 8081
 
 spring:
+
+  application:
+      name: activemq-service # 应用名称
   activemq:
     broker-url: tcp://180.76.242.204:61616
     user: admin
     password: admin
-    close-timeout: 15s   # 在考虑结束之前等待的时间
+    close-timeout: 15   # 在考虑结束之前等待的时间
     in-memory: true      # 默认代理URL是否应该在内存中。如果指定了显式代理，则忽略此值。
     non-blocking-redelivery: false  # 是否在回滚回滚消息之前停止消息传递。这意味着当启用此命令时，消息顺序不会被保留。
     send-timeout: 0     # 等待消息发送响应的时间。设置为0等待永远。
     queue-name: testQueue1
     topic-name: testTopics
-
   #  packages:
   #    trust-all: true #不配置此项，会报错
   pool:
     enabled: true
     max-connections: 10   #连接池最大连接数
     idle-timeout: 30000   #空闲的连接过期时间，默认为30秒
+
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 5      # 心跳时间，即服务续约间隔时间（缺省为30s）
+    lease-expiration-duration-in-seconds: 15  # 发呆时间，即服务续约到期时间（缺省为90s）
+  client:
+    registry-fetch-interval-seconds: 10 # 拉取服务注册信息间隔（缺省为30s）
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true # 开启健康检查（依赖spring-boot-starter-actuator）
+
+
 
   # jms:
   #   pub-sub-domain: true  #默认情况下activemq提供的是queue模式，若要使用topic模式需要配置下面配置
@@ -49,3 +64,4 @@ spring:
 #spring.activemq.pool.time-between-expiration-check=-1ms
 # 是否只使用一个MessageProducer
 #spring.activemq.pool.use-anonymous-producers=true
+

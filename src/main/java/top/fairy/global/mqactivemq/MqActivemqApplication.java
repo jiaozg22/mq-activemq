@@ -13,9 +13,12 @@ package top.fairy.global.mqactivemq;
  * */
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.jms.annotation.EnableJms;
 
+
 @SpringBootApplication
+@EnableEurekaClient
 @EnableJms    //启动消息队列
 public class MqActivemqApplication {
 

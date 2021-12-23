@@ -27,6 +27,19 @@ public class ProducerController
     @Autowired
     private Topic topic;
 
+
+    /*
+     * @ClassName ASayHelloController
+     * @Desc TODO   Say Hello
+     * @Date 2019/5/20 23:24
+     * @Version 1.0
+     */
+    @RequestMapping("/hello")
+    public String hello() {
+        return "Hello！I'm a. port：" + 8081;
+
+    }
+
     @RequestMapping(value = "/queue/test",method = RequestMethod.POST)
     public String sendQueue(@RequestBody String str) {
         this.sendMessage(this.queue, str);
