@@ -15,6 +15,9 @@ spring:
     send-timeout: 0     # 等待消息发送响应的时间。设置为0等待永远。
     queue-name: testQueue1
     topic-name: testTopics
+  cloud:
+    client:
+      ipAdress: localhost
   #  packages:
   #    trust-all: true #不配置此项，会报错
   pool:
@@ -26,6 +29,8 @@ eureka:
   instance:
     lease-renewal-interval-in-seconds: 5      # 心跳时间，即服务续约间隔时间（缺省为30s）
     lease-expiration-duration-in-seconds: 15  # 发呆时间，即服务续约到期时间（缺省为90s）
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAdress}:8761
   client:
     registry-fetch-interval-seconds: 10 # 拉取服务注册信息间隔（缺省为30s）
     service-url:
